@@ -16,10 +16,11 @@ const LeaderboardScreen: React.FC = () => {
             flexDirection: 'column', 
             alignItems: 'center', 
             padding: '20px',
+            boxSizing: 'border-box',
             color: 'white',
             fontFamily: '"Press Start 2P", monospace'
         }}>
-            <h1 style={{ color: '#ffeb3b', marginBottom: '30px' }}>{t('leaderboard.title')}</h1>
+            <h1 style={{ color: '#ffeb3b', marginBottom: '20px', fontSize: 'clamp(20px, 5vw, 32px)', textAlign: 'center' }}>{t('leaderboard.title')}</h1>
             
             <div style={{ 
                 width: '100%', 

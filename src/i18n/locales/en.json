@@ -4,7 +4,10 @@
       "play": "PLAY",
       "leaderboard": "LEADERBOARD",
       "instructions": "INSTRUCTIONS",
-      "dressColor": "DRESS COLOR"
+      "dressColor": "DRESS COLOR",
+      "colorNone": "NONE",
+      "colorCustom": "CUSTOM",
+      "colorRecommended": "RECOMMENDED"
     },
     "game": {
         "score": "Score",

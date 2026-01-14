@@ -594,14 +594,14 @@ export default function GameScreen() {
                     if (assets.current.player) ctx.drawImage(assets.current.player, dx, y, width, height);
                     else { ctx.fillStyle = 'brown'; ctx.fillRect(dx, y, width, height); }
                     
-                    if (useDress && assets.current.dress) {
+                    if (useDress && assets.current.dress && dressColor) {
                         const tempC = document.createElement('canvas');
                         tempC.width = width; tempC.height = height;
                         const tCtx = tempC.getContext('2d');
                         if (tCtx) {
                             tCtx.drawImage(assets.current.dress, 0, 0, width, height);
                             tCtx.globalCompositeOperation = "source-in";
-                            tCtx.fillStyle = dressColor || '#FFFFFF';
+                            tCtx.fillStyle = dressColor;
                             tCtx.fillRect(0, 0, width, height);
                             ctx.drawImage(tempC, dx, y, width, height);
                         } else {

@@ -10,8 +10,8 @@ interface GameState {
   isDashPressed: boolean;
   
   // Customization
-  dressColor: string;
-  setDressColor: (color: string) => void;
+  dressColor: string | null;
+  setDressColor: (color: string | null) => void;
   
   // Actions
   setJoystick: (x: number, y: number) => void;
@@ -36,7 +36,7 @@ export const useGameStore = create<GameState>((set) => ({
   
   joystick: { x: 0, y: 0 },
   isDashPressed: false,
-  dressColor: '#FFFFFF',
+  dressColor: null,
 
   // Navigation
   currentView: 'menu',

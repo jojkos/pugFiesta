@@ -4,7 +4,10 @@
       "play": "HRAJ",
       "leaderboard": "ŽEBŘÍČEK",
       "instructions": "INSTRUKCE",
-      "dressColor": "BARVA DRESU"
+      "dressColor": "BARVA DRESU",
+      "colorNone": "ŽÁDNÁ",
+      "colorCustom": "VLASTNÍ",
+      "colorRecommended": "DOPORUČENÉ"
     },
     "game": {
         "score": "Skóre",
