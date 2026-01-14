@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 // import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Joystick } from 'react-joystick-component';
-import { supabase } from '../lib/supabase';
+import { supabase, isSupabaseEnabled } from '../lib/supabase';
 import { useGameStore } from '../stores/gameStore';
 import { GAME_CONFIG } from '../gameConfig';
 
@@ -767,8 +767,9 @@ export default function GameScreen() {
                             style={{ padding: '10px', fontFamily: '"Press Start 2P"' }}
                         />
                         <button 
-                            disabled={saveStatus === 'saving' || saveStatus === 'success' || !playerName}
+                            disabled={!isSupabaseEnabled || saveStatus === 'saving' || saveStatus === 'success' || !playerName}
                             onClick={async () => {
+                                if (!isSupabaseEnabled) return;
                                 setSaveStatus('saving');
                                 const { error } = await supabase.from('leaderboard').insert({ player_name: playerName, score: finalScore });
                                 if (!error) {
@@ -778,9 +779,9 @@ export default function GameScreen() {
                                     setSaveStatus('error');
                                 }
                             }}
-                            style={{ padding: '10px', fontFamily: '"Press Start 2P"', backgroundColor: '#2196F3', color: 'white', border: 'none', cursor: 'pointer', opacity: (saveStatus !== 'idle' || !playerName) ? 0.5 : 1 }}
+                            style={{ padding: '10px', fontFamily: '"Press Start 2P"', backgroundColor: isSupabaseEnabled ? '#2196F3' : '#9e9e9e', color: 'white', border: 'none', cursor: isSupabaseEnabled ? 'pointer' : 'not-allowed', opacity: (isSupabaseEnabled && (saveStatus !== 'idle' || !playerName)) ? 0.5 : 1 }}
                         >
-                            {saveStatus === 'saving' ? t('game.saving') : saveStatus === 'success' ? "SAVED!" : saveStatus === 'error' ? "ERROR" : t('game.saveScore')}
+                            {!isSupabaseEnabled ? "OFFLINE" : saveStatus === 'saving' ? t('game.saving') : saveStatus === 'success' ? "SAVED!" : saveStatus === 'error' ? "ERROR" : t('game.saveScore')}
                         </button>
                     </div>
 

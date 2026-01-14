@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { supabase } from '../lib/supabase';
+import { supabase, isSupabaseEnabled } from '../lib/supabase';
 
 export interface LeaderboardEntry {
   id: string;
@@ -14,6 +14,7 @@ export function useLeaderboard() {
   const [error, setError] = useState<string | null>(null);
 
   const fetchScores = async () => {
+    if (!isSupabaseEnabled) return; 
     setLoading(true);
     setError(null);
     try {
@@ -34,7 +35,7 @@ export function useLeaderboard() {
   };
 
   const submitScore = async (playerName: string, score: number) => {
-    if (!playerName.trim()) return;
+    if (!isSupabaseEnabled || !playerName.trim()) return;
     try {
       const { error } = await supabase
         .from('leaderboard')
@@ -50,6 +51,8 @@ export function useLeaderboard() {
   };
 
   useEffect(() => {
+    if (!isSupabaseEnabled) return;
+
     fetchScores();
     
     // Realtime subscription

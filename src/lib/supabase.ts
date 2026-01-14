@@ -7,7 +7,9 @@ if (!supabaseUrl || !supabaseKey) {
   console.warn('Missing Supabase URL or Key. Leaderboard functionality will be disabled.');
 }
 
+export const isSupabaseEnabled = !!supabaseUrl && !!supabaseKey && supabaseUrl !== 'placeholder-url' && supabaseKey !== 'placeholder-key';
+
 export const supabase = createClient(
-  supabaseUrl || 'http://placeholder-url.com',
+  supabaseUrl || 'https://placeholder.supabase.co',
   supabaseKey || 'placeholder-key'
 );
