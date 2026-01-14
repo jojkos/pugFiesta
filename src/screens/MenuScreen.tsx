@@ -3,6 +3,11 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useGameStore } from '../stores/gameStore';
 
+const DRESS_COLORS = [
+    '#FFFFFF', '#F44336', '#E91E63', '#9C27B0', '#2196F3', 
+    '#009688', '#4CAF50', '#FFEB3B', '#FF9800', '#795548', '#607D8B'
+];
+
 const MenuScreen: React.FC = () => {
     const { t, i18n } = useTranslation();
 
@@ -77,20 +82,23 @@ const MenuScreen: React.FC = () => {
                 <label style={{ marginBottom: '10px', fontSize: '14px', color: '#FFF', textShadow: '2px 2px 0px #000' }}>
                    {t('menu.dressColor', 'DRESS COLOR')}
                 </label>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                    <input 
-                        type="color" 
-                        value={useGameStore((state) => state.dressColor)}
-                        onChange={(e) => useGameStore.getState().setDressColor(e.target.value)}
-                        style={{ 
-                            width: '60px', 
-                            height: '40px', 
-                            cursor: 'pointer', 
-                            border: '2px solid white',
-                            padding: 0,
-                            backgroundColor: 'transparent'
-                        }} 
-                    />
+                <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', justifyContent: 'center', maxWidth: '320px' }}>
+                    {DRESS_COLORS.map(color => (
+                        <div 
+                            key={color}
+                            onClick={() => useGameStore.getState().setDressColor(color)}
+                            style={{
+                                width: '30px',
+                                height: '30px',
+                                backgroundColor: color,
+                                border: useGameStore.getState().dressColor === color ? '3px solid #FFF' : '2px solid #555',
+                                borderRadius: '50%',
+                                cursor: 'pointer',
+                                boxShadow: useGameStore.getState().dressColor === color ? '0 0 10px #FFF' : 'none',
+                                transform: useGameStore.getState().dressColor === color ? 'scale(1.1)' : 'scale(1)'
+                            }}
+                        />
+                    ))}
                 </div>
             </div>
 
@@ -168,7 +176,7 @@ const MenuScreen: React.FC = () => {
                     src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" 
                     alt="Buy Me A Coffee" 
                     style={{
-                        width: '180px',
+                        width: 'clamp(120px, 30vw, 180px)',
                         height: 'auto',
                         borderRadius: '8px',
                         boxShadow: '2px 2px 5px rgba(0, 0, 0, 0.5)'

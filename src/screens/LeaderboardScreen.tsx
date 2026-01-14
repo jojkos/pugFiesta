@@ -10,7 +10,7 @@ const LeaderboardScreen: React.FC = () => {
 
     return (
         <div style={{ 
-            height: '100vh', 
+            height: '100dvh', 
             backgroundColor: '#222', 
             display: 'flex', 
             flexDirection: 'column', 
@@ -24,7 +24,8 @@ const LeaderboardScreen: React.FC = () => {
             <div style={{ 
                 width: '100%', 
                 maxWidth: '600px',
-                height: '70vh', 
+                flex: 1,
+                minHeight: 0, 
                 backgroundColor: '#333', 
                 borderRadius: '10px', 
                 padding: '20px',

@@ -78,6 +78,8 @@ export default function GameScreen() {
         };
 
         const u = new SpeechSynthesisUtterance(text);
+        // Explicitly set lang for Android fallback
+        u.lang = lang === 'cz' ? 'cs-CZ' : 'en-US';
         u.pitch = 1.0 + (Math.random() - 0.5) * 0.4;
         u.rate = 1.1;
         
@@ -91,10 +93,13 @@ export default function GameScreen() {
                 voice = getVoice();
                 if (voice) {
                     u.voice = voice;
-                    window.speechSynthesis.speak(u);
                 }
+                // Speak regardless if voice found (uses u.lang)
+                window.speechSynthesis.speak(u);
                 window.speechSynthesis.onvoiceschanged = null; // Cleanup
              };
+             // Attempt to speak immediately with lang fallback as well
+             window.speechSynthesis.speak(u);
         }
     };
 
@@ -762,7 +767,11 @@ export default function GameScreen() {
                      display: 'flex', flexDirection: 'column', gap: '20px', alignItems: 'center'
                  }}>
                       <h2 style={{ color: '#fff', fontFamily: '"Press Start 2P"', marginBottom: '20px' }}>PAUSE</h2>
-                      <button onClick={() => { setIsPaused(false); isPausedRef.current = false; }} style={{ padding: '15px', width: '250px', fontFamily: '"Press Start 2P"', backgroundColor: '#4CAF50', border: '3px solid #fff', color: 'white', cursor: 'pointer' }}>RESUME</button>
+                      <button onClick={() => { 
+                          setIsPaused(false); 
+                          isPausedRef.current = false;
+                          if (audioContext.current?.Transport) audioContext.current.Transport.start();
+                      }} style={{ padding: '15px', width: '250px', fontFamily: '"Press Start 2P"', backgroundColor: '#4CAF50', border: '3px solid #fff', color: 'white', cursor: 'pointer' }}>RESUME</button>
                       <button onClick={() => setMuted(!isMuted)} style={{ padding: '15px', width: '250px', fontFamily: '"Press Start 2P"', backgroundColor: isMuted ? '#f44336' : '#2196F3', border: '3px solid #fff', color: 'white', cursor: 'pointer' }}>
                           {isMuted ? "UNMUTE" : "MUTE"}
                       </button>

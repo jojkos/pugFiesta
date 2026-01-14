@@ -28,7 +28,7 @@ export const GAME_CONFIG = {
     SUCCESS_TEXT_DURATION: 1.5,
     PARTICLE_DURATION: 0.5,
     HEART_ANIM_DURATION: 1.16,
-    UI_TOP_OFFSET_PCT: 0.03, // 3% from top
+    UI_TOP_OFFSET_PCT: 0.08, // 8% from top to avoid notch/clipping
 
     // --- Audio ---
     MUSIC_BPM: 140,
