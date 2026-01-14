@@ -1,0 +1,43 @@
+{
+  "translation": {
+    "menu": {
+      "play": "PLAY",
+      "leaderboard": "LEADERBOARD",
+      "instructions": "INSTRUCTIONS",
+      "dressColor": "DRESS COLOR"
+    },
+    "game": {
+        "score": "Score",
+        "time": "Time",
+        "dash": "DASH",
+        "gameOver": "GAME OVER",
+        "playAgain": "PLAY AGAIN",
+        "menu": "MENU",
+        "saveScore": "Save Score",
+        "saving": "Saving...",
+        "scoreSaved": "Score Saved!",
+        "enterName": "Enter Name",
+        "tagPhrases": [
+            "Sit, stay... slay", "Hot dog incoming!", "Boss bitch", "Sniffed it, liked it, marked it", "Wiggle wiggle wiggle", "Scooby dooby doo", "Go pug yourself", "Who let the dogs out", "doggy style", "Certified stud magnet", "Not in heat, just hot as hell", "hump first, ask names later", "No leash, no shame, all stamina"
+        ],
+        "multiTagPhrases" : {
+            "2": "Threesome", "3": "pug banger fiesta", "4": "Quadruple Catch!", "5": "PENTA-DOMINATION!"
+        }
+    },
+    "instructions": {
+        "title": "HOW TO PLAY",
+        "move": "Use WASD or Joystick to MOVE.",
+        "dash": "Press SPACE or DASH button to DASH.",
+        "tag": "Dash into female pugs to TAG them!",
+        "score": "Tagging awards POINTS.",
+        "avoid": "Avoid running out of time!",
+        "back": "BACK TO MENU"
+    },
+    "leaderboard": {
+        "title": "LEADERBOARD",
+        "back": "BACK TO MENU",
+        "loading": "Loading scores...",
+        "empty": "No scores yet. Be the first!"
+    }
+  }
+}

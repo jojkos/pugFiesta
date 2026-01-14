@@ -1,0 +1,43 @@
+{
+  "translation": {
+    "menu": {
+      "play": "HRAJ",
+      "leaderboard": "ŽEBŘÍČEK",
+      "instructions": "INSTRUKCE",
+      "dressColor": "BARVA DRESU"
+    },
+    "game": {
+        "score": "Skóre",
+        "time": "Čas",
+        "dash": "SKOK",
+        "gameOver": "KONEC HRY",
+        "playAgain": "HRÁT ZNOVU",
+        "menu": "MENU",
+        "saveScore": "Uložit Skóre",
+        "saving": "Ukládám...",
+        "scoreSaved": "Uloženo!",
+        "enterName": "Zadej Jméno",
+        "tagPhrases": [
+            "štěká, ale nekouše", "Haf haf, a je po ptákách!", "utrhnem se ze řetězu", "o jé!", "má naštěkáno do boudy!", "silnější pes mrdá", "beng beng beng, jak rej koranteng", "vrtí ocasem, ta to chce", "to je psina", "dáme pac, příště zas", "viděl jsem, štěknul jsem, prcnul jsem", "hlídej si ocas, jdu na věc", "rozjedem to na plný tlapky", "mrskej se ty čubičko", "štěňata se sama neudělaj!", "štěknem si", "epes rádes"
+        ],
+        "multiTagPhrases" : {
+            "2": "čubčí trojka", "3": "tři čubičky v řadě", "4": "čtyři čubičky, to je síla", "5": "pět čubiček, to je mazec"
+        }
+    },
+    "instructions": {
+        "title": "JAK HRÁT",
+        "move": "Použij WASD nebo Joystick pro POHYB.",
+        "dash": "Stiskni MEZERNÍK nebo SKOK pro DASH.",
+        "tag": "Skoč do fenek pro jejich SEBRÁNÍ!",
+        "score": "Sbírání dává BODY.",
+        "avoid": "Pozor na čas!",
+        "back": "ZPĚT DO MENU"
+    },
+    "leaderboard": {
+        "title": "ŽEBŘÍČEK",
+        "back": "ZPĚT DO MENU",
+        "loading": "Načítám skóre...",
+        "empty": "Žádné skóre. Buď první!"
+    }
+  }
+}
