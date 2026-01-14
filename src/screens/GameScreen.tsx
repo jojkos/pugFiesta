@@ -704,7 +704,7 @@ export default function GameScreen() {
     }, [isMuted]);
 
     return (
-        <div style={{ width: '100vw', height: '100vh', position: 'relative', backgroundColor: '#2c2c2c', overflow: 'hidden' }}>
+        <div style={{ width: '100vw', height: '100dvh', position: 'relative', backgroundColor: '#2c2c2c', overflow: 'hidden' }}>
              {/* Canvas */}
              <div id="gameContainer" style={{ width: '100%', height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                 <canvas ref={canvasRef} style={{ maxWidth: '100%', maxHeight: '100%', aspectRatio: '4/3', border: '2px solid #000', backgroundColor: '#78c850', boxShadow: '0 0 10px rgba(0,0,0,0.5)' }} />
@@ -801,8 +801,8 @@ export default function GameScreen() {
 
              {/* Mobile Controls */}
             <div style={{
-                position: 'absolute', bottom: '20px', left: '20px', zIndex: 5,
-                display: 'flex', width: '100%', justifyContent: 'space-between', paddingRight: '40px', boxSizing: 'border-box', pointerEvents: 'none'
+                position: 'fixed', bottom: '20px', left: '20px', right: '20px', zIndex: 100,
+                display: 'flex', width: 'auto', justifyContent: 'space-between', paddingRight: '0', boxSizing: 'border-box', pointerEvents: 'none'
             }}>
                 <div style={{ pointerEvents: 'auto' }}>
                      <Joystick 
