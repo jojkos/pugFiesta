@@ -64,19 +64,38 @@ export default function GameScreen() {
     const speakText = (text: string, lang = 'en') => {
         if (!window.speechSynthesis) return;
         window.speechSynthesis.cancel();
+        
+        const getVoice = () => {
+             const voices = window.speechSynthesis.getVoices();
+             if (lang === 'cz') {
+                 // Try various Czech codes
+                 return voices.find(v => v.lang === 'cs-CZ') || 
+                        voices.find(v => v.lang === 'cs_CZ') || 
+                        voices.find(v => v.lang.startsWith('cs')) ||
+                        voices.find(v => v.lang.includes('cz')); // Fallback
+             }
+             return voices.find(v => v.lang.startsWith('en'));
+        };
+
         const u = new SpeechSynthesisUtterance(text);
-        u.pitch = 1.0 + (Math.random() - 0.5) * 0.4; // Pitch variance
+        u.pitch = 1.0 + (Math.random() - 0.5) * 0.4;
         u.rate = 1.1;
         
-        const voices = window.speechSynthesis.getVoices();
-        // Priority: Strict match -> Lang match -> Default
-        let voice = voices.find(v => v.lang === (lang === 'cz' ? 'cs-CZ' : 'en-US'));
-        if (!voice) voice = voices.find(v => v.lang.startsWith(lang === 'cz' ? 'cs' : 'en'));
-        
-        if (voice) u.voice = voice;
-        else console.warn('No voice found for lang:', lang);
-        
-        window.speechSynthesis.speak(u);
+        let voice = getVoice();
+        if (voice) {
+            u.voice = voice;
+            window.speechSynthesis.speak(u);
+        } else {
+            // Retry once if voices weren't loaded
+             window.speechSynthesis.onvoiceschanged = () => {
+                voice = getVoice();
+                if (voice) {
+                    u.voice = voice;
+                    window.speechSynthesis.speak(u);
+                }
+                window.speechSynthesis.onvoiceschanged = null; // Cleanup
+             };
+        }
     };
 
     const createFlower = (cw: number, ch: number) => {
@@ -690,8 +709,13 @@ export default function GameScreen() {
             if (cleanupGame) cleanupGame();
             cancelAnimationFrame(animationFrameId);
             // Cleanup Audio
-            if (musicLoop.current) musicLoop.current.stop();
-            if (audioContext.current && audioContext.current.Transport) audioContext.current.Transport.stop();
+            if (musicLoop.current) {
+                musicLoop.current.stop();
+            }
+            if (audioContext.current && audioContext.current.Transport) {
+                audioContext.current.Transport.stop();
+                audioContext.current.Transport.cancel(0); // Clear events
+            }
             window.speechSynthesis.cancel();
         };
     }, []);
@@ -716,6 +740,10 @@ export default function GameScreen() {
                     const next = !isPaused;
                     setIsPaused(next);
                     isPausedRef.current = next;
+                    if (audioContext.current?.Transport) {
+                        if (next) audioContext.current.Transport.pause();
+                        else audioContext.current.Transport.start();
+                    }
                 }}
                 style={{
                     position: 'absolute', top: '20px', left: '20px', zIndex: 10,
