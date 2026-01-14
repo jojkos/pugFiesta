@@ -44,8 +44,8 @@ const MenuScreen: React.FC = () => {
             
             <h1 style={{ 
                 color: '#ffeb3b', 
-                fontSize: '40px', 
-                marginBottom: '20px', 
+                fontSize: 'clamp(24px, 6vw, 40px)', 
+                marginBottom: '10px', 
                 textAlign: 'center',
                 textShadow: '4px 4px 0px #000'
             }}>
@@ -58,7 +58,7 @@ const MenuScreen: React.FC = () => {
                     src="assets/images/logo.png" 
                     alt="Pug Fiesta" 
                     style={{ 
-                        width: '300px', 
+                        width: 'clamp(150px, 50vw, 300px)', 
                         imageRendering: 'pixelated',
                         animation: 'pulse 2s infinite ease-in-out'
                     }} 
@@ -73,7 +73,7 @@ const MenuScreen: React.FC = () => {
             </div>
 
             {/* Dress Color Picker */}
-            <div style={{ marginBottom: '20px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <div style={{ marginBottom: '10px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                 <label style={{ marginBottom: '10px', fontSize: '14px', color: '#FFF', textShadow: '2px 2px 0px #000' }}>
                    {t('menu.dressColor', 'DRESS COLOR')}
                 </label>
@@ -94,7 +94,7 @@ const MenuScreen: React.FC = () => {
                 </div>
             </div>
 
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', width: '300px' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '15px', width: '90%', maxWidth: '300px' }}>
                 <button onClick={async () => {
                     // Start Audio Context on user interaction
                     try {
@@ -107,8 +107,8 @@ const MenuScreen: React.FC = () => {
                     useGameStore.getState().setView('game');
                 }} style={{ 
                     width: '100%',
-                    padding: '20px', 
-                    fontSize: '24px', 
+                    padding: '15px', 
+                    fontSize: 'clamp(18px, 5vw, 24px)', 
                     cursor: 'pointer', 
                     backgroundColor: '#4CAF50', 
                     border: '4px solid #fff', 
